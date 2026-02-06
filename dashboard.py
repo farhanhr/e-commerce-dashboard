@@ -42,12 +42,13 @@ def create_rfm_df(df):
     })
     by_rfm_df.columns = ["customer_unique_id", "max_order_timestamp", "frequency", "monetary"]
     
-    by_rfm_df["max_order_timestamp"] = pd.to_datetime(by_rfm_df["max_order_timestamp"]).dt.date
-    recent_date = df["order_purchase_timestamp"].dt.date.max()
+    by_rfm_df["max_order_timestamp"] = pd.to_datetime(by_rfm_df["max_order_timestamp"])
+    
+    recent_date = df["order_purchase_timestamp"].max() + pd.DateOffset(days=1)
+    
     by_rfm_df["recency"] = by_rfm_df["max_order_timestamp"].apply(lambda x: (recent_date - x).days)
     
     return by_rfm_df
-
 @st.cache_data
 def load_data():
     script_dir = os.path.dirname(__file__)
