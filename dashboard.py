@@ -49,7 +49,7 @@ def create_rfm_df(df):
 
 @st.cache_data
 def load_data():
-    all_df = pd.read_csv("dashboard/main_data.csv")
+    all_df = pd.read_csv("main_data.csv")
     datetime_columns = ["order_purchase_timestamp", "order_delivered_carrier_date", 
                         "order_delivered_customer_date", "order_estimated_delivery_date"]
     
