@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 from babel.numbers import format_currency
+import os
 
 st.set_page_config(page_title="E-Commerce Analytics Dashboard", layout="centered")
 
@@ -49,7 +50,12 @@ def create_rfm_df(df):
 
 @st.cache_data
 def load_data():
-    all_df = pd.read_csv("main_data.csv")
+    script_dir = os.path.dirname(__file__)
+
+    csv_path = os.path.join(script_dir, "main_data.csv")
+
+    all_df = pd.read_csv(csv_path)
+    
     datetime_columns = ["order_purchase_timestamp", "order_delivered_carrier_date", 
                         "order_delivered_customer_date", "order_estimated_delivery_date"]
     
