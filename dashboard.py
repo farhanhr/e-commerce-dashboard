@@ -68,7 +68,7 @@ max_date = all_df["order_purchase_timestamp"].max()
 
 default_start_date = max_date - pd.DateOffset(years=1)
 
-st.header('Dicoding E-Commerce Dashboard :sparkles:')
+st.header('E-Commerce Analytics Dashboard')
 
 st.subheader("Filter Data")
 col_date1, col_date2 = st.columns(2)
